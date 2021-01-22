@@ -1,24 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { Font } from 'expo-font';
+import IntroPage from './screens/IntroPage';
+import Navigator from './routes/homeStack';
+import AppLoading from 'expo-app-loading';
+import PieChart from './assets/pie_chart-24px.svg';
 
+const { height, width } = Dimensions.get('window')
+
+
+// const getFont = () => Font.loadAsync({
+//     'Arial':require('./assets/fonts/arial.ttf')
+  // });
+
+  
 export default class App extends React.Component{
   constructor(){
     super();
 
     this.state = {
-
+      fontLoaded: false
     }
+  }
+  async componentDidMount() {
+    
   }
 
   render(){
+    
     return(
-      <View style = {styles.container}>
-        <View style = {styles.statusBar}></View>
-        <Text style = {styles.header}>Welcome</Text>
-        <Text style = {styles.headerDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus nunc eget risus efficitur auctor. </Text>
-      </View>
+      <Navigator  />
     )
+    
+    
+
   }
 }
 
@@ -37,20 +53,23 @@ const styles = StyleSheet.create({
     height: 20
   },
   header:{
-    marginTop:40,
+    marginTop:height*.1,
     textAlign:'center',
     color:'#2699FB',
     fontSize:40,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    // fontFamily: "Arial"
   },
   headerDescription:{
     color:'#2699FB',
     textAlign:'center',
-    marginLeft:20,
+    marginLeft:width*.08,
     justifyContent:'center',
-    marginTop:15,
+    marginTop:height*.03,
     paddingRight: 20,
     fontSize:14,
-    lineHeight:30,
+    lineHeight:24,
+    // fontFamily:'Arial',
+    fontWeight:'bold'
   }
 });
